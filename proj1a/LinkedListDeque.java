@@ -2,7 +2,8 @@ public class LinkedListDeque<T> {
 
     /**
      * add and remove operations must not involve any looping or recursion.
-     * A single such operation must take “constant time”, i.e. execution time should not depend on the size of the deque.
+     * A single such operation must take “constant time”,
+     * i.e. execution time should not depend on the size of the deque.
      * <p>
      * get must use iteration, not recursion.
      * <p>
@@ -82,7 +83,8 @@ public class LinkedListDeque<T> {
     }
 
     /**
-     * Prints the items in the deque from first to last, separated by a space. Once all the items have been printed, print out a new line.
+     * Prints the items in the deque from first to last, separated by a space.
+     * Once all the items have been printed, print out a new line.
      */
     public void printDeque() {
         Node<T> p = sentinel;
@@ -105,9 +107,11 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = sentinel.next.item;
-        sentinel.next = sentinel.next.next;
-        sentinel.next.next.prev = sentinel;
+        Node<T> node = sentinel.next;
+        T item = node.item;
+        sentinel.next = node.next;
+        node.next.prev = sentinel;
+        node = null;
         size--;
         return item;
     }
@@ -121,9 +125,11 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = sentinel.prev.item;
-        sentinel.prev = sentinel.prev.prev;
-        sentinel.prev.prev.next = sentinel;
+        Node<T> node = sentinel.prev;
+        T item = node.item;
+        sentinel.prev = node.prev;
+        node.prev.next = sentinel;
+        node = null;
         size--;
         return item;
     }
