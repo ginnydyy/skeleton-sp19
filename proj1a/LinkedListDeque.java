@@ -169,7 +169,7 @@ public class LinkedListDeque<T> {
 
     private Node<T> recursiveHelper(int count, Node<T> p) {
         if (count == 0) {
-            return p;
+            return p.next;
         } else {
             return recursiveHelper(--count, p.next);
         }

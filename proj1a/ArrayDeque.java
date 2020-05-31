@@ -60,7 +60,7 @@ public class ArrayDeque<T> {
         resize();
         items[nextLast] = item;
         size++;
-        nextLast = getNextIndex(nextFirst);
+        nextLast = getNextIndex(nextLast);
     }
 
     private int getPreviousIndex(int index) {
