@@ -32,12 +32,12 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public ArrayDeque(ArrayDeque<T> other) {
+    public ArrayDeque(ArrayDeque other) {
         super();
         size = other.size();
         items = (T[]) new Object[size];
         for (int i = 0; i < size; i++) {
-            items[i] = other.get(i);
+            items[i] = (T) other.get(i);
         }
         nextFirst = getPreviousIndex(0);
         nextLast = getNextIndex(size - 1);
@@ -113,8 +113,8 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        T item = get(0);
         int firstIndex = getNextIndex(nextFirst);
-        T item = get(firstIndex);
         items[firstIndex] = null;
         size--;
         nextFirst = firstIndex;
@@ -129,8 +129,8 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        T item = get(size - 1);
         int lastIndex = getPreviousIndex(nextLast);
-        T item = get(lastIndex);
         items[lastIndex] = null;
         size--;
         nextLast = lastIndex;
@@ -150,7 +150,7 @@ public class ArrayDeque<T> {
         if (size == 0 || index < 0 || index > size - 1) {
             return null;
         }
-        int arrayIndex = getNextIndex(nextFirst + 1 + index);
+        int arrayIndex = getNextIndex(nextFirst + index);
         return items[arrayIndex];
     }
 
@@ -160,7 +160,8 @@ public class ArrayDeque<T> {
 
     /**
      * Check whether the current array needs to resize.
-     * If so, then create a new array, copy the existing items to the new array, starting from index 0.
+     * If so, then create a new array.
+     * Copy the existing items to the new array, starting from index 0.
      * Update the nextFrist and nextLast.
      */
     private void resize() {
