@@ -1,4 +1,5 @@
-/*import org.junit.Test;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestPalindrome {
@@ -15,4 +16,53 @@ public class TestPalindrome {
         }
         assertEquals("persiflage", actual);
     }
-}     Uncomment this class once you've created your Palindrome class. */
+
+    @Test
+    public void testIsPalindrome() {
+        assertTrue(palindrome.isPalindrome("noon"));
+        assertTrue(palindrome.isPalindrome("no1on"));
+        assertFalse(palindrome.isPalindrome("cat"));
+        assertFalse(palindrome.isPalindrome("Aa"));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("")); // empty string
+        assertTrue(palindrome.isPalindrome(" ")); // one space
+        assertTrue(palindrome.isPalindrome("  ")); // two space
+        assertFalse(palindrome.isPalindrome(null));
+    }
+
+    @Test
+    public void testOverloadedIsPalindrome() {
+        OffByOne obo = new OffByOne();
+        assertTrue(palindrome.isPalindrome("anmb", obo));
+        assertTrue(palindrome.isPalindrome("an1mb", obo));
+        assertTrue(palindrome.isPalindrome("an12mb", obo));
+        assertTrue(palindrome.isPalindrome("an%&mb", obo));
+        assertFalse(palindrome.isPalindrome("anna", obo));
+        assertFalse(palindrome.isPalindrome("ana", obo));
+        assertFalse(palindrome.isPalindrome("anmB", obo));
+        assertFalse(palindrome.isPalindrome("anMb", obo));
+        assertTrue(palindrome.isPalindrome("a", obo));
+        assertTrue(palindrome.isPalindrome("", obo)); // empty string
+        assertTrue(palindrome.isPalindrome(" ", obo)); // one space
+        assertFalse(palindrome.isPalindrome("  ", obo)); // two space
+        assertFalse(palindrome.isPalindrome(null, obo));
+    }
+
+    @Test
+    public void testOverloadedIsPalindromeWithOffByTwo() {
+        CharacterComparator obo = new OffByN(2);
+        assertTrue(palindrome.isPalindrome("coma", obo));
+        assertTrue(palindrome.isPalindrome("co1ma", obo));
+        assertTrue(palindrome.isPalindrome("co13ma", obo));
+        assertTrue(palindrome.isPalindrome("co1$&3ma", obo));
+        assertFalse(palindrome.isPalindrome("anna", obo));
+        assertFalse(palindrome.isPalindrome("ana", obo));
+        assertFalse(palindrome.isPalindrome("co1mA", obo));
+        assertFalse(palindrome.isPalindrome("co13Ma", obo));
+        assertTrue(palindrome.isPalindrome("a", obo));
+        assertTrue(palindrome.isPalindrome("", obo)); // empty string
+        assertTrue(palindrome.isPalindrome(" ", obo)); // one space
+        assertFalse(palindrome.isPalindrome("  ", obo)); // two space
+        assertFalse(palindrome.isPalindrome(null, obo));
+    }
+}
