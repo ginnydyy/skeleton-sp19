@@ -3,7 +3,7 @@ interface Deque<T> {
 
     public void addLast(T item);
 
-    default public boolean isEmpty() {
+    public default boolean isEmpty() {
         return size() == 0;
     }
 
