@@ -1,6 +1,6 @@
 package huglife;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * @author Josh Hug
